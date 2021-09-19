@@ -57,10 +57,12 @@ exports.maths = function (req, res) {
         errorEncountered(res, params);
     }
 
-    params.value = value;
-    res.statusCode = 200;
-    res.setHeader('content-Type', 'Application/json');
-    res.end(JSON.stringify(params));
+    if (params.error == null) {
+        params.value = value;
+        res.statusCode = 200;
+        res.setHeader('content-Type', 'Application/json');
+        res.end(JSON.stringify(params));
+    }
 }
 
 function getQueryString(req) {
